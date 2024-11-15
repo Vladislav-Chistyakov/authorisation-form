@@ -1,10 +1,38 @@
 <script setup>
+import router from './router'
+import {computed} from "vue";
+import { onBeforeRouteUpdate } from 'vue-router'
+// ...
+
+onBeforeRouteUpdate(async (to, from) => {
+  // react to route changes...
+  console.warn(to, from)
+})
+
+const location = computed(() => {
+  return router.options.history.location
+})
+
+const routes = computed(() => {
+  return router.getRoutes()
+})
 </script>
 
 <template>
   <main class="main">
     <div class="container">
-      <div class="wrapper">1</div>
+      <div class="wrapper" style="color: red">
+        <pre>
+          {{ location }}
+        </pre>
+        <pre>
+          {{ routes }}
+        </pre>
+
+        <RouterLink to="/authorization">authorization</RouterLink> |
+        <RouterLink to="/catalog">catalog</RouterLink>
+<!--        <component :is="router.[]"-->
+      </div>
     </div>
   </main>
 </template>
