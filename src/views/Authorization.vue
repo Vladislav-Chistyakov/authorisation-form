@@ -1,13 +1,17 @@
 <script setup>
-// export default {
-//   name: 'Authorization'
-// }
 </script>
 
 <template>
-  <div>Authorization</div>
+  <div class="authorization-page">
+
+    Authorization
+  </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.authorization-page {
+  width: 100%;
+  padding: 40px;
+  background-color: red;
+}
 </style>
