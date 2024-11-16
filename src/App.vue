@@ -5,15 +5,12 @@ import { pageComponent } from './router/index.js'
 <template>
   <main class="main">
     <div class="container">
-      <div class="wrapper">
-        <component :is="pageComponent"></component>
-      </div>
+      <component :is="pageComponent"></component>
     </div>
   </main>
 </template>
 
 <style lang="scss">
-@use '~/src/assets/main';
 @use '~/src/assets/sass/colors';
 
 * {
@@ -31,15 +28,6 @@ body {
 @include container.container;
 
 .main {
-  padding: 0;
   background-color: colors.$bg-main;
-}
-
-.container {
-  background-color: colors.$text-lite-green;
-}
-
-.wrapper {
-  background-color: colors.$bg-block;
 }
 </style>
