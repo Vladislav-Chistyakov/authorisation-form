@@ -1,4 +1,15 @@
 <script setup>
+const submit = function () {
+  localStorage.setItem('user', JSON.stringify({
+    email: 'chey69@yandex.ru',
+    password: '123490'
+  }))
+}
+
+const getLocalStorageInfo = function () {
+  const info = localStorage.getItem('user')
+  console.warn(info)
+}
 </script>
 
 <template>
@@ -200,8 +211,8 @@
         </div>
 
         <div class="form-authorization__buttons">
-          <button type="button" class="form-authorization__buttons-submit">Login</button>
-          <button type="button" class="form-authorization__buttons-sign-up">Sign Up</button>
+          <button @click="submit" type="button" class="form-authorization__buttons-submit">Login</button>
+          <button @click="getLocalStorageInfo" type="button" class="form-authorization__buttons-sign-up">Sign Up</button>
         </div>
       </form>
 
@@ -229,8 +240,6 @@
 @include container.container;
 
 .authorization-page {
-  background-color: red;
-
   .authorization-page__top {
     display: flex;
     flex-direction: row;

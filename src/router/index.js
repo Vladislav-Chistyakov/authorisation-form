@@ -19,8 +19,12 @@ export const location = computed(() => {
 })
 
 export const pageComponent = computed(() => {
+    const localInfo = localStorage.getItem('user') || null
     for (const optionsPage of router.options.routes) {
         if (optionsPage.path === location.value) {
+            if (!localInfo) {
+                return Authorization
+            }
             return optionsPage.component
         }
     }
