@@ -9,7 +9,7 @@ const routes = [
     { path: '/catalog', name: 'catalog', component: Catalog },
 ]
 
-const router = createRouter({
+export const router = createRouter({
     history: createWebHistory(),
     routes,
 })
@@ -20,6 +20,7 @@ export const location = computed(() => {
 
 export const pageComponent = computed(() => {
     const localInfo = localStorage.getItem('user') || null
+    console.warn('localInfo', localInfo)
     for (const optionsPage of router.options.routes) {
         if (optionsPage.path === location.value) {
             if (!localInfo) {

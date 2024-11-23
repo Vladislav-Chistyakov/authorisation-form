@@ -1,15 +1,28 @@
 <script setup>
-const submit = function () {
-  localStorage.setItem('user', JSON.stringify({
-    email: 'chey69@yandex.ru',
-    password: '123490'
+import { ref } from 'vue'
+import { router } from '/src/router'
+
+const submit = async function () {
+  await localStorage.setItem('user', JSON.stringify({
+    email: email.value,
+    password: password.value,
   }))
+  const userInfo = localStorage.getItem('user')
+  if (userInfo) {
+    console.log('router', router)
+    await router.push('/catalog')
+  } else {
+    console.error('Error: Данные не сохранены', userInfo)
+  }
 }
 
 const getLocalStorageInfo = function () {
   const info = localStorage.getItem('user')
   console.warn(info)
 }
+
+const email = ref('')
+const password = ref('')
 </script>
 
 <template>
@@ -191,13 +204,13 @@ const getLocalStorageInfo = function () {
         <div class="form-authorization__block-inputs">
           <label class="form-authorization__block-inputs-label" for="email">
             Email
-            <input class="form-authorization__block-inputs-input" type="email" name="email" id="email" placeholder="Email address">
+            <input v-model="email" class="form-authorization__block-inputs-input" type="email" name="email" id="email" placeholder="Email address">
           </label>
 
 
           <label class="form-authorization__block-inputs-label" for="password">
             Password
-            <input class="form-authorization__block-inputs-input" type="password" name="password" id="password">
+            <input v-model="password" class="form-authorization__block-inputs-input" type="password" name="password" id="password">
           </label>
         </div>
 
