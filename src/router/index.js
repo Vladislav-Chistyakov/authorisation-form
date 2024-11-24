@@ -9,16 +9,18 @@ const routes = [
     { path: '/catalog', name: 'catalog', component: Catalog },
 ]
 
-export const router = createRouter({
+const router = createRouter({
     history: createWebHistory(),
     routes,
 })
 
-export const location = computed(() => {
+export default router
+
+const location = computed(() => {
     return router.options.history.location
 })
 
-export const pageComponent = computed(() => {
+const pageComponent = computed(() => {
     const localInfo = localStorage.getItem('user') || null
     console.warn('localInfo', localInfo)
     for (const optionsPage of router.options.routes) {
@@ -29,5 +31,5 @@ export const pageComponent = computed(() => {
             return optionsPage.component
         }
     }
-    return NotFound
+    return User
 })

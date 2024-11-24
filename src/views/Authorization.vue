@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { router } from '/src/router'
+// import { router } from '/src/router'
 
 const submit = async function () {
   await localStorage.setItem('user', JSON.stringify({
@@ -9,8 +9,8 @@ const submit = async function () {
   }))
   const userInfo = localStorage.getItem('user')
   if (userInfo) {
-    console.log('router', router)
-    await router.push('/catalog')
+    // console.log('router', router)
+    // await router.push('/catalog')
   } else {
     console.error('Error: Данные не сохранены', userInfo)
   }
