@@ -20,8 +20,6 @@ const route = useRoute()
 
 <template>
   <div>
-    <h1>Hello App!</h1>
-
     <p>
       <strong>Current route path:</strong> {{ route }}
     </p>
@@ -41,6 +39,9 @@ const route = useRoute()
 
 <style lang="scss">
 @use '~/src/assets/sass/colors';
+@use '~/src/assets/sass/normalize';
+
+@include normalize.normalize;
 
 * {
   font-family: 'Inter', Helvetica, Arial, sans-serif;
