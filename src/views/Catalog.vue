@@ -1,5 +1,7 @@
 <script setup>
-import {onBeforeMount, ref} from 'vue'
+import { onBeforeMount, ref } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const clearUserLocalStore = async function () {
   console.log('Очистка local store')
@@ -22,7 +24,6 @@ const getListCatalog = async () => {
     await fetch(api).then(async (res) => {
       list.value = await res.json()
       list.value = list.value.items
-      console.warn('getListCatalog: ', list.value)
     }).catch(() => error.value = true)
   }
   finally {
@@ -49,12 +50,12 @@ onBeforeMount(async () => {
         class="catalog__list"
     >
       <li v-for="(item, index) in  list" :key="index" class="catalog__item">
-        <button type="button">
-          <div style="height: 100px; width: 100px;">
+        <RouterLink :to="`/catalog/${item.id}`">
+          <span style="height: 100px; width: 100px;">
             <div :style="`height: 100%; width: 100%; background-color: red; background-image: url(${item.image.file.url}); background-size: cover;`" />
-          </div>
+          </span>
           <strong>{{ item.title }}</strong>
-        </button>
+        </RouterLink>
       </li>
     </ul>
 

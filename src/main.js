@@ -1,16 +1,17 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router'
 import './style.css'
 import App from './App.vue'
-import Authorization from "./views/Authorization.vue";
-import Catalog from "./views/Catalog.vue";
+
+const routes = [
+    { path: '/', name: 'authorization', component: ()=> import('./views/Authorization.vue') },
+    { path: '/catalog', name: 'catalog', component: ()=> import('./views/Catalog.vue') },
+    { path: '/catalog/:id', name: 'element', component: ()=> import('./views/CatalogElement.vue') },
+]
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes: [
-        { path: '/', name: 'authorization', component: Authorization },
-        { path: '/catalog', name: 'catalog', component: Catalog },
-    ]
+    history: createWebHistory(),
+    routes,
 })
 
 createApp(App)
