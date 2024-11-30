@@ -50,21 +50,27 @@ onBeforeMount(async () => {
         class="catalog__list"
     >
       <li v-for="(item, index) in  list" :key="index" class="catalog__item">
-        <RouterLink :to="`/catalog/${item.id}`">
-          <span style="height: 100px; width: 100px;">
-            <div :style="`height: 100%; width: 100%; background-color: red; background-image: url(${item.image.file.url}); background-size: cover;`" />
-          </span>
-          <strong>{{ item.title }}</strong>
+        <RouterLink :to="`/catalog/${item.id}`" class="catalog__link">
+
+          <img :src="item.image.file.url" :alt="item.title" class="catalog__link-img" width="100" height="100" />
+
+          <div class="catalog__link-info">
+            <strong class="catalog__link-title">{{ item.title }}</strong>
+
+            <strong class="catalog__link-price">{{ item.price }}</strong>
+          </div>
         </RouterLink>
       </li>
     </ul>
 
-    <div v-if="pending">
-      <strong>Зазгрузка</strong>
+    <div v-if="pending" class="catalog__loading">
+      <strong class="catalog__loading">
+        Зазгрузка...
+      </strong>
     </div>
 
-    <div v-if="error && !pending">
-      <strong>{{ error }}</strong>
+    <div v-if="error && !pending" class="catalog__error-block">
+      <strong class="catalog__error">{{ error }}</strong>
     </div>
   </div>
 </template>
@@ -79,6 +85,12 @@ onBeforeMount(async () => {
     margin: 0;
   }
 
+  .catalog {
+  }
+
+  .catalog__heading {
+  }
+
   .catalog__list {
     margin: 0;
     padding: 0;
@@ -86,8 +98,31 @@ onBeforeMount(async () => {
   }
 
   .catalog__item {
-    margin: 0;
     padding: 0;
+  }
+
+  .catalog__link {
+  }
+
+  .catalog__link-img {
+  }
+
+  .catalog__link-info {
+  }
+
+  .catalog__link-title {
+  }
+
+  .catalog__link-price {
+  }
+
+  .catalog__loading {
+  }
+
+  .catalog__error-block {
+  }
+
+  .catalog__error {
   }
 }
 </style>
