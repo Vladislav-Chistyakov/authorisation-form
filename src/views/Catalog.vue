@@ -161,4 +161,22 @@ onBeforeMount(async () => {
     color: #dc0000;
   }
 }
+
+@media screen and (min-width: 576px) {
+  .catalog {
+    .catalog__list {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .catalog {
+    .catalog__list {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+  }
+}
 </style>
