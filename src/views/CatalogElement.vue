@@ -44,7 +44,7 @@ onBeforeMount(async () => {
         </strong>
 
         <p class="product-card__product-price">
-          Цена: {{ card.price }}
+          Цена: {{ card.price.toLocaleString('ru-RU', { style: "currency", currency: "RUB" }) }}
         </p>
 
         <p class="product-card__product-category">

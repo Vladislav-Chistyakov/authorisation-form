@@ -60,7 +60,9 @@ onBeforeMount(async () => {
           <div class="catalog__link-info">
             <strong class="catalog__link-title">{{ item.title }}</strong>
 
-            <strong class="catalog__link-price">{{ item.price }}</strong>
+            <strong class="catalog__link-price">
+              {{ item.price.toLocaleString('ru-RU', { style: "currency", currency: "RUB" }) }}
+            </strong>
           </div>
         </RouterLink>
       </li>
