@@ -26,6 +26,7 @@ const getLocalStorageInfo = function () {
 
 const email = ref('')
 const password = ref('')
+
 </script>
 
 <template>

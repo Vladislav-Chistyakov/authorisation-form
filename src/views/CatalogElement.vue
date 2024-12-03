@@ -29,8 +29,8 @@ onBeforeMount(async () => {
 
 <template>
   <div class="wrapper product-card">
-    <div class="product-card__info">
-      <div class="product-card__block-image">
+    <div v-if="card" class="product-card__info">
+      <div v-if="card.title &&  card.image && card.image.file && card.image.file.url" class="product-card__block-image">
         <img
             :src="card.image.file.url"
             :alt="card.title"
@@ -39,15 +39,15 @@ onBeforeMount(async () => {
       </div>
 
       <div class="product-card__content">
-        <strong class="product-card__product-name">
+        <strong v-if="card.title" class="product-card__product-name">
           {{ card.title }}
         </strong>
 
-        <p class="product-card__product-price">
+        <p v-if="card.price" class="product-card__product-price">
           Цена: {{ card.price.toLocaleString('ru-RU', { style: "currency", currency: "RUB" }) }}
         </p>
 
-        <p class="product-card__product-category">
+        <p v-if="card.category && card.category.title" class="product-card__product-category">
           Категория: {{ card.category.title }}
         </p>
 
@@ -56,7 +56,7 @@ onBeforeMount(async () => {
             Доступные цвета:
           </p>
 
-          <ul class="product-card__list-colors">
+          <ul v-if="card.colors" class="product-card__list-colors">
             <li
                 v-for="(item, index) in card.colors"
                 :key="index"

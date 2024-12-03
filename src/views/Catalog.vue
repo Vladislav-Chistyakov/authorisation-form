@@ -8,8 +8,8 @@ const clearUserLocalStore = async function () {
   await localStorage.removeItem('user')
 }
 
-const checkUserLocalStore = async function () {
-  const user = await localStorage.getItem('user')
+const checkUserLocalStore = function () {
+  const user = localStorage.getItem('user')
   console.log('Проверка local store', user)
 }
 
