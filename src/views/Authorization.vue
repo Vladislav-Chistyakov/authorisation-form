@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 
-const route = useRoute()
 const router = useRouter()
 
 const submit = async function () {
@@ -20,8 +19,7 @@ const submit = async function () {
 }
 
 const getLocalStorageInfo = function () {
-  const info = localStorage.getItem('user')
-  console.warn(info)
+  localStorage.getItem('user')
 }
 
 const email = ref('')
@@ -256,234 +254,232 @@ const password = ref('')
 @use '~/src/assets/sass/container';
 @include container.container;
 
-.authorization-page {
-  .authorization-page__top {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    background-color: colors.$bg-main;
-    padding-top: 32px;
-    padding-bottom: 32px;
-  }
+.authorization-page__top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background-color: colors.$bg-main;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
 
-  .company-name {
-    margin: 0;
-    padding: 0;
-    font-size: 32px;
-    line-height: 36px;
-  }
+.company-name {
+  margin: 0;
+  padding: 0;
+  font-size: 32px;
+  line-height: 36px;
+}
 
-  .authorization-page__background-car {
-    display: flex;
-    justify-content: center;
-    padding-top: 35px;
-    padding-bottom: 30px;
-    background-color: colors.$bg-car;
-  }
+.authorization-page__background-car {
+  display: flex;
+  justify-content: center;
+  padding-top: 35px;
+  padding-bottom: 30px;
+  background-color: colors.$bg-car;
+}
 
-  .authorization-page__main {
-    padding-top: 32px;
-    padding-bottom: 30px;
+.authorization-page__main {
+  padding-top: 32px;
+  padding-bottom: 30px;
+  background-color: colors.$bg-block;
+  color: colors.$text-green;
+}
+
+.authorization-page__main-company-logo {
+  display: none;
+}
+
+.authorization-page__main-company-name {
+  display: none;
+}
+
+.authorization-page__main-info {
+  margin-bottom: 40px;
+}
+
+.authorization-page__main-info-header {
+  margin: 0 0 16px 0;
+  padding: 0;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.authorization-page__main-info-description {
+  font-size: 16px;
+  line-height: 20px;
+  color: colors.$text-lite-green;
+  margin: 0 0 16px 0;
+}
+
+.form-authorization {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-authorization__block-inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.form-authorization__block-inputs-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: colors.$text-grey;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.form-authorization__block-inputs-input {
+  display: block;
+  width: -webkit-fill-available;
+  margin: 0;
+  padding: 15px;
+  background-color: transparent;
+  color: colors.$text-green;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid colors.$border-lite-green;
+  border-radius: 8px;
+  &:focus, &:focus-visible {
+    outline: none;
+  }
+}
+
+.form-authorization__additionally {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.form-authorization__additionally-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.form-authorization__additionally-checkbox {
+  display: block;
+  height: 14px;
+  width: 15px;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+  &::before {
+    visibility: visible;
+    content: '';
+    position: absolute;
     background-color: colors.$bg-block;
-    color: colors.$text-green;
+    border: 1px solid colors.$text-grey;
+    top: 5px;
+    left: 1px;
+    height: 12px;
+    width: 12px;
+    border-radius: 2px;
   }
 
-  .authorization-page__main-company-logo {
-    display: none;
+  &::after {
+    visibility: visible;
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 2px;
   }
 
-  .authorization-page__main-company-name {
-    display: none;
+  &:checked::before {
+    background-color: colors.$bg-lite-green;
+    border: 1px solid colors.$bg-lite-green;
   }
 
-  .authorization-page__main-info {
-    margin-bottom: 40px;
+  &:checked::after {
+    content: '✔';
   }
+}
 
-  .authorization-page__main-info-header {
-    margin: 0 0 16px 0;
-    padding: 0;
-    font-size: 20px;
-    line-height: 24px;
-  }
+.form-authorization__additionally-button {
+  width: fit-content;
+  padding: 0;
+  background-color: transparent;
+  color: colors.$text-green;
+  text-decoration: underline;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+}
 
-  .authorization-page__main-info-description {
-    font-size: 16px;
-    line-height: 20px;
-    color: colors.$text-lite-green;
-    margin: 0 0 16px 0;
-  }
+.form-authorization__buttons {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
 
-  .form-authorization {
-    display: flex;
-    flex-direction: column;
-  }
+.form-authorization__buttons-submit {
+  width: 100%;
+  border: 1px solid colors.$border-green;
+  padding: 14px;
+  background-color: colors.$border-green;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
 
-  .form-authorization__block-inputs {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 24px;
-  }
+.form-authorization__buttons-sign-up {
+  width: 100%;
+  border: 1px solid colors.$border-green;
+  padding: 14px;
+  background-color: transparent;
+  color: colors.$border-green;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
 
-  .form-authorization__block-inputs-label {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    color: colors.$text-grey;
-    font-size: 16px;
-    line-height: 20px;
-  }
+.form-authorization__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 
-  .form-authorization__block-inputs-input {
-    display: block;
-    width: -webkit-fill-available;
-    margin: 0;
-    padding: 15px;
-    background-color: transparent;
-    color: colors.$text-green;
-    font-size: 16px;
-    line-height: 24px;
-    border: 1px solid colors.$border-lite-green;
-    border-radius: 8px;
-    &:focus, &:focus-visible {
-      outline: none;
-    }
-  }
+.form-authorization__item {
+  text-align: center;
+  font-size: 14px;
+  line-height: 18px;
+}
 
-  .form-authorization__additionally {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
+.form-authorization__item:first-child {
+  grid-column: span 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-  .form-authorization__additionally-label {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    line-height: 24px;
-  }
+.form-authorization__entrance {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  color: colors.$text-lite-green;
+  font-weight: 500;
+}
 
-  .form-authorization__additionally-checkbox {
-    display: block;
-    height: 14px;
-    width: 15px;
-    margin: 0;
-    padding: 0;
-    visibility: hidden;
-    &::before {
-      visibility: visible;
-      content: '';
-      position: absolute;
-      background-color: colors.$bg-block;
-      border: 1px solid colors.$text-grey;
-      top: 5px;
-      left: 1px;
-      height: 12px;
-      width: 12px;
-      border-radius: 2px;
-    }
-
-    &::after {
-      visibility: visible;
-      content: '';
-      position: absolute;
-      top: 3px;
-      left: 2px;
-    }
-
-    &:checked::before {
-      background-color: colors.$bg-lite-green;
-      border: 1px solid colors.$bg-lite-green;
-    }
-
-    &:checked::after {
-      content: '✔';
-    }
-  }
-
-  .form-authorization__additionally-button {
-    width: fit-content;
-    padding: 0;
-    background-color: transparent;
-    color: colors.$text-green;
-    text-decoration: underline;
-    font-size: 16px;
-    line-height: 24px;
-    border: none;
-  }
-
-  .form-authorization__buttons {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 40px;
-  }
-
-  .form-authorization__buttons-submit {
-    width: 100%;
-    border: 1px solid colors.$border-green;
-    padding: 14px;
-    background-color: colors.$border-green;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  .form-authorization__buttons-sign-up {
-    width: 100%;
-    border: 1px solid colors.$border-green;
-    padding: 14px;
-    background-color: transparent;
-    color: colors.$border-green;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  .form-authorization__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .form-authorization__item {
-    text-align: center;
-    font-size: 14px;
-    line-height: 18px;
-  }
-
-  .form-authorization__item:first-child {
-    grid-column: span 3;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .form-authorization__entrance {
-    font-size: 14px;
-    line-height: 18px;
-    padding: 0;
-    margin: 0;
-    border: none;
-    background-color: transparent;
-    color: colors.$text-lite-green;
-    font-weight: 500;
-  }
-
-  .form-authorization__link {
-    color: colors.$text-green;
-    font-weight: 500;
-  }
+.form-authorization__link {
+  color: colors.$text-green;
+  font-weight: 500;
 }
 
 @media screen and (min-width: 1024px) {
@@ -492,51 +488,51 @@ const password = ref('')
     flex-direction: row-reverse;
     background-color: inherit;
     padding: 120px 0 135px;
+  }
 
-    .authorization-page__top {
-      display: none;
+  .authorization-page__top {
+    display: none;
+  }
+
+  .authorization-page__background-car {
+    width: 100%;
+    border-radius: 0 20px 20px 0;
+    align-items: center;
+
+    svg {
+      flex: 1 1 100%;
+      height: 338px;
     }
+  }
 
-    .authorization-page__background-car {
-      width: 100%;
-      border-radius: 0 20px 20px 0;
-      align-items: center;
+  .authorization-page__main {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 20px 0 0 20px;
+  }
 
-      svg {
-        flex: 1 1 100%;
-        height: 338px;
-      }
-    }
+  .authorization-page__main-company-logo {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
 
-    .authorization-page__main {
-      width: 100%;
-      max-width: 550px;
-      border-radius: 20px 0 0 20px;
-    }
+  .authorization-page__main-company-name {
+    display: block;
+  }
 
-    .authorization-page__main-company-logo {
-      display: flex;
-      flex-direction: row;
-      gap: 16px;
-      margin-bottom: 56px;
-    }
+  .authorization-page__main-info-header {
+    font-size: 24px;
+    line-height: 28px;
+  }
 
-    .authorization-page__main-company-name {
-      display: block;
-    }
+  .authorization-page__main-info-description {
+    margin-bottom: 24px;
+  }
 
-    .authorization-page__main-info-header {
-      font-size: 24px;
-      line-height: 28px;
-    }
-
-    .authorization-page__main-info-description {
-      margin-bottom: 24px;
-    }
-
-    .form-authorization__block-inputs-label {
-      font-weight: 600;
-    }
+  .form-authorization__block-inputs-label {
+    font-weight: 600;
   }
 }
 </style>

@@ -1,11 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
-<div>Not Found</div>
+  <div>404: Такой страницы не существует</div>
 </template>
-
-<style scoped>
-
-</style>

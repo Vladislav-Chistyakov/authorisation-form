@@ -1,6 +1,6 @@
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
-import {onBeforeMount, onMounted, ref} from 'vue'
+import { useRoute } from 'vue-router'
+import { onBeforeMount, ref} from 'vue'
 
 const route = useRoute()
 
@@ -12,10 +12,9 @@ const api = `https://vue-study.skillbox.cc/api/products/${route.params.id}`
 const getCatalogCard = async () => {
   pending.value = true
   try {
-    await fetch(api).then(async (res) => {
-      card.value = await res.json()
-      console.warn('getListCatalog: ', card.value)
-    }).catch(() => error.value = true)
+    await fetch(api)
+        .then(async (res) => card.value = await res.json())
+        .catch(() => error.value = true)
   }
   finally {
     pending.value = false
@@ -74,6 +73,10 @@ onBeforeMount(async () => {
 @use '~/src/assets/sass/colors';
 @use '~/src/assets/sass/container';
 @include container.container;
+
+.product-card {
+  padding-top: 20px;
+}
 
 .product-card__info {
   display: flex;
@@ -154,7 +157,6 @@ onBeforeMount(async () => {
 }
 
 @media screen and (min-width: 576px) {
-
   .product-card__info {
     flex-direction: row;
     padding: 24px;
@@ -168,6 +170,12 @@ onBeforeMount(async () => {
 
   .product-card__content {
     padding: 20px 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .product-card {
+    padding-top: 60px;
   }
 }
 </style>
