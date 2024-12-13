@@ -33,7 +33,7 @@ onBeforeMount(async () => {
         class="catalog__list"
     >
       <li v-for="(item, index) in  list" :key="index" class="catalog__item">
-        <RouterLink :to="`/catalog/${item.id}`" class="catalog__link">
+        <RouterLink :to="`/list/${item.id}`" class="catalog__link">
 
           <div class="catalog__link-img-block" >
             <img :src="item.image.file.url" :alt="item.title" class="catalog__link-img" />

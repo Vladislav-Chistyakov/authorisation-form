@@ -1,24 +1,51 @@
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import {ref, watch} from 'vue'
+import { useRouter } from "vue-router";
 
 const router = useRouter()
 
-const email = ref(null)
-const password = ref(null)
-
-const errorSignin = ref('')
-
 const submit = async function () {
-  const projectLocalStorage = localStorage.getItem('user')
-  const userInfo = projectLocalStorage ? await JSON.parse(projectLocalStorage) : null
-  if (userInfo.email === email.value && userInfo.password === password.value) {
-    errorSignin.value = ''
-    await router.push('/list')
+  if (!errorEmail.value && !errorPassword.value) {
+    await localStorage.setItem('user', JSON.stringify({
+      email: email.value,
+      password: password.value,
+    }))
+    const userInfo = localStorage.getItem('user')
+    if (userInfo) {
+      await router.push('/signin')
+    } else {
+      console.error('Error: Данные не сохранены', userInfo)
+    }
   } else {
-    errorSignin.value = 'Такой пользователь не найден. Пройдите на страницу регистрации'
+    alert('Данные заполнены неверно')
   }
 }
+
+const email = ref(null)
+const password = ref(null)
+const repeatedPassword = ref(null)
+
+const errorPassword = ref('')
+const errorEmail = ref('')
+
+function checkPassword () {
+  if (password.value.length < 6) {
+    errorPassword.value = 'Пароль слишком короткий'
+  } else {
+    if (repeatedPassword.value !== password.value) {
+      errorPassword.value = 'Пароли должны совпадать'
+    } else {
+      errorPassword.value = ''
+    }
+  }
+}
+
+watch(password, checkPassword)
+watch(repeatedPassword, checkPassword)
+watch(email, (newEmail) => {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  errorEmail.value = regex.test(newEmail) ? '' : 'Почта не валидна'
+})
 
 </script>
 
@@ -189,44 +216,51 @@ const submit = async function () {
 
       <div class="authorization-page__main-info">
         <h2 class="authorization-page__main-info-header">
-          Artificial Intelligence giving you travel recommendations
+          Once you register, we will provide you with access to our technologies.
         </h2>
 
         <p class="authorization-page__main-info-description">
-          Welcome Back, Please login to your account
+          Please register
         </p>
       </div>
 
       <form class="authorization-page__form-authorization form-authorization">
         <div class="form-authorization__block-inputs">
           <label class="form-authorization__block-inputs-label" for="email">
-            Email
+            <span>
+              Email
+            </span>
+
+            <span v-show="errorEmail" class="error-message">
+              {{ errorEmail }}
+            </span>
+
             <input v-model="email" class="form-authorization__block-inputs-input" type="email" name="email" id="email" placeholder="Email address">
           </label>
 
-
           <label class="form-authorization__block-inputs-label" for="password">
-            Password
+            <span>
+              Password
+            </span>
+
+            <span v-show="errorPassword" class="error-message">
+              {{ errorPassword }}
+            </span>
+
             <input v-model="password" class="form-authorization__block-inputs-input" type="password" name="password" id="password">
           </label>
 
-          <p v-show="errorSignin" class="error-message">
-            {{ errorSignin }}
-          </p>
-        </div>
+          <label class="form-authorization__block-inputs-label" for="repeatedPassword">
+            <span>
+              Repeat password
+            </span>
 
-        <div class="form-authorization__additionally">
-          <label class="form-authorization__additionally-label" for="checkbox">
-            <input class="form-authorization__additionally-checkbox" type="checkbox" name="checkbox" id="checkbox" />
-            Remember me
+            <input v-model="repeatedPassword" class="form-authorization__block-inputs-input" type="password" name="password" id="repeatedPassword">
           </label>
-
-          <button class="form-authorization__additionally-button" type="button">Forgot password?</button>
         </div>
 
         <div class="form-authorization__buttons">
-          <button @click="submit" type="button" class="form-authorization__buttons-submit">Login</button>
-          <router-link to="/signup"  class="form-authorization__buttons-sign-up">Sign Up</router-link>
+          <button @click="submit" type="button" class="form-authorization__buttons-submit">Register</button>
         </div>
       </form>
 
@@ -541,3 +575,4 @@ const submit = async function () {
   }
 }
 </style>
+
