@@ -231,8 +231,6 @@ const submit = async function () {
         </div>
       </form>
 
-      <RouterLink :to="'/signup'"  class="form-authorization__buttons-sign-up">Sign Up</RouterLink>
-
       <ul class="form-authorization__list">
         <li class="form-authorization__item">
           <button class="form-authorization__entrance">Or, login with</button>
@@ -259,7 +257,12 @@ const submit = async function () {
 .error-message {
   margin: 0 0 10px;
   display: block;
-  background-color: red;
+  color: red;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  position: absolute;
+  right: 0;
 }
 
 .authorization-page__top {
@@ -431,25 +434,24 @@ const submit = async function () {
   margin-bottom: 40px;
 }
 
-.form-authorization__buttons-submit {
+.form-authorization__buttons-submit, .form-authorization__buttons-sign-up {
   width: 100%;
-  border: 1px solid colors.$border-green;
   padding: 14px;
-  background-color: colors.$border-green;
+  border: 1px solid colors.$border-green;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
+  text-align: center;
+}
+
+.form-authorization__buttons-submit {
+  background-color: colors.$border-green;
 }
 
 .form-authorization__buttons-sign-up {
-  width: 100%;
-  border: 1px solid colors.$border-green;
-  padding: 14px;
   background-color: transparent;
   color: colors.$border-green;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
 }
 
 .form-authorization__list {
