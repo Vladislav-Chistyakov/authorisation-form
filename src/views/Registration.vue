@@ -1,6 +1,6 @@
 <script setup>
-import {ref, watch} from 'vue'
-import { useRouter } from "vue-router";
+import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
@@ -247,7 +247,7 @@ watch(email, (newEmail) => {
               {{ errorPassword }}
             </span>
 
-            <input v-model="password" class="form-authorization__block-inputs-input" type="password" name="password" id="password">
+            <input v-model="password" autocomplete="on" class="form-authorization__block-inputs-input" type="password" name="password" id="password">
           </label>
 
           <label class="form-authorization__block-inputs-label" for="repeatedPassword">
@@ -255,7 +255,7 @@ watch(email, (newEmail) => {
               Repeat password
             </span>
 
-            <input v-model="repeatedPassword" class="form-authorization__block-inputs-input" type="password" name="password" id="repeatedPassword">
+            <input v-model="repeatedPassword" autocomplete="on" class="form-authorization__block-inputs-input" type="password" name="password" id="repeatedPassword">
           </label>
         </div>
 

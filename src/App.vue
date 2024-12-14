@@ -8,17 +8,17 @@ const routePatch = computed(() => {
   return route.path
 })
 
-watch(routePatch, async (newValue) => {
-  if (newValue !== '/') {
-    const user = localStorage.getItem('user')
-    if (!user) {
-      await router.push({ path: '/'})
-      .catch((error) => {
-        console.error('Error, ошибка при переходе на другую страницу: ', error)
-      })
-    }
-  }
-})
+// watch(routePatch, async (newValue) => {
+//   if (newValue !== '/') {
+//     const user = localStorage.getItem('user')
+//     if (!user) {
+//       await router.push({ path: '/'})
+//       .catch((error) => {
+//         console.error('Error, ошибка при переходе на другую страницу: ', error)
+//       })
+//     }
+//   }
+// })
 </script>
 
 <template>

@@ -12,12 +12,13 @@ const errorSignin = ref('')
 const submit = async function () {
   const projectLocalStorage = localStorage.getItem('user')
   const userInfo = projectLocalStorage ? await JSON.parse(projectLocalStorage) : null
-  if (userInfo.email === email.value && userInfo.password === password.value) {
-    errorSignin.value = ''
-    await router.push('/list')
-  } else {
-    errorSignin.value = 'Такой пользователь не найден. Пройдите на страницу регистрации'
-  }
+  console.warn(userInfo)
+  // if (userInfo.email === email.value && userInfo.password === password.value) {
+  //   errorSignin.value = ''
+  //   await router.push('/list')
+  // } else {
+  //   errorSignin.value = 'Такой пользователь не найден. Пройдите на страницу регистрации'
+  // }
 }
 
 </script>
@@ -207,7 +208,7 @@ const submit = async function () {
 
           <label class="form-authorization__block-inputs-label" for="password">
             Password
-            <input v-model="password" class="form-authorization__block-inputs-input" type="password" name="password" id="password">
+            <input v-model="password" autocomplete="on" class="form-authorization__block-inputs-input" type="password" name="password" id="password">
           </label>
 
           <p v-show="errorSignin" class="error-message">
@@ -225,10 +226,12 @@ const submit = async function () {
         </div>
 
         <div class="form-authorization__buttons">
-          <button @click="submit" type="button" class="form-authorization__buttons-submit">Login</button>
-          <router-link to="/signup"  class="form-authorization__buttons-sign-up">Sign Up</router-link>
+          <button @click="submit" type="submit" class="form-authorization__buttons-submit">Login</button>
+          <RouterLink :to="'/signup'"  class="form-authorization__buttons-sign-up">Sign Up</RouterLink>
         </div>
       </form>
+
+      <RouterLink :to="'/signup'"  class="form-authorization__buttons-sign-up">Sign Up</RouterLink>
 
       <ul class="form-authorization__list">
         <li class="form-authorization__item">
