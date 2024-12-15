@@ -3,23 +3,8 @@ import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const usersInfo = ref(null)
 
-const submit = async function () {
-  if (!errorEmail.value && !errorPassword.value) {
-    await localStorage.setItem('user', JSON.stringify({
-      email: email.value,
-      password: password.value,
-    }))
-    const userInfo = localStorage.getItem('user')
-    if (userInfo) {
-      await router.push('/signin')
-    } else {
-      console.error('Error: Данные не сохранены', userInfo)
-    }
-  } else {
-    alert('Данные заполнены неверно')
-  }
-}
 
 const email = ref(null)
 const password = ref(null)
@@ -27,6 +12,34 @@ const repeatedPassword = ref(null)
 
 const errorPassword = ref('')
 const errorEmail = ref('')
+
+const submit = async function () {
+  if (!errorEmail.value && !errorPassword.value) {
+    try {
+      if (!Array.isArray(JSON.parse(localStorage.getItem('users')))) {
+        await localStorage.setItem('users', JSON.stringify([]))
+      }
+
+      usersInfo.value = JSON.parse(localStorage.getItem('users'))
+
+      if (Array.isArray(usersInfo.value)) {
+        usersInfo.value.push({
+          email: email.value,
+          password: password.value,
+        })
+
+        await localStorage.setItem('users', JSON.stringify(usersInfo.value))
+      }
+
+      await router.push('/signin')
+    }
+    catch (error) {
+      console.error('Не удалось сохранить данные', error)
+    }
+  } else {
+    alert('Данные заполнены неверно')
+  }
+}
 
 function checkPassword () {
   if (password.value.length < 6) {

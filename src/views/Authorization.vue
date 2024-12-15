@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -10,16 +10,28 @@ const password = ref(null)
 const errorSignin = ref('')
 
 const submit = async function () {
-  const projectLocalStorage = localStorage.getItem('user')
-  const userInfo = projectLocalStorage ? await JSON.parse(projectLocalStorage) : null
-  console.warn(userInfo)
-  // if (userInfo.email === email.value && userInfo.password === password.value) {
-  //   errorSignin.value = ''
-  //   await router.push('/list')
-  // } else {
-  //   errorSignin.value = 'Такой пользователь не найден. Пройдите на страницу регистрации'
-  // }
+  const projectLocalStorage = localStorage.getItem('users')
+  const users = projectLocalStorage ? await JSON.parse(projectLocalStorage) : null
+  if (Array.isArray(users) && users.length > 0) {
+    for (const user of users) {
+      if (user.email === email.value && user.password === password.value) {
+        localStorage.setItem('user', JSON.stringify(user))
+        await router.push('/list')
+        break
+      }
+    }
+    errorSignin.value = 'Такой пользователь не найден. Пройдите на страницу регистрации'
+  } else {
+    errorSignin.value = 'Такой пользователь не найден. Пройдите на страницу регистрации'
+  }
 }
+
+onMounted(async () => {
+  const infoUser = JSON.parse(localStorage.getItem('user'))
+  if (infoUser) {
+    localStorage.setItem('user', JSON.stringify(null))
+  }
+})
 
 </script>
 

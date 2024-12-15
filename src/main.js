@@ -24,7 +24,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.name === 'catalog' || to.name === 'element') {
-        const userInfo = localStorage.getItem('user')
+        const userInfo = JSON.parse(localStorage.getItem('user'))
         if (userInfo) {
             next()
         } else {
