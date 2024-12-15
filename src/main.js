@@ -30,8 +30,9 @@ router.beforeEach((to, from, next) => {
         } else {
             next({ path: '/signin', name: 'authorization', component: Authorization })
         }
+    } else {
+        next()
     }
-    next()
 })
 
 

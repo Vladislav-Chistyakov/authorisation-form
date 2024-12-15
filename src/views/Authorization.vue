@@ -213,6 +213,11 @@ onMounted(async () => {
       <form class="authorization-page__form-authorization form-authorization">
         <div class="form-authorization__block-inputs">
           <label class="form-authorization__block-inputs-label" for="email">
+
+            <span v-show="errorSignin" class="error-message">
+              {{ errorSignin }}
+            </span>
+
             Email
             <input v-model="email" class="form-authorization__block-inputs-input" type="email" name="email" id="email" placeholder="Email address">
           </label>
@@ -222,10 +227,6 @@ onMounted(async () => {
             Password
             <input v-model="password" autocomplete="on" class="form-authorization__block-inputs-input" type="password" name="password" id="password">
           </label>
-
-          <p v-show="errorSignin" class="error-message">
-            {{ errorSignin }}
-          </p>
         </div>
 
         <div class="form-authorization__additionally">
@@ -238,7 +239,7 @@ onMounted(async () => {
         </div>
 
         <div class="form-authorization__buttons">
-          <button @click="submit" type="submit" class="form-authorization__buttons-submit">Login</button>
+          <button @click="submit" type="button" class="form-authorization__buttons-submit">Login</button>
           <RouterLink :to="'/signup'"  class="form-authorization__buttons-sign-up">Sign Up</RouterLink>
         </div>
       </form>
@@ -267,6 +268,8 @@ onMounted(async () => {
 @include container.container;
 
 .error-message {
+  max-width: 83%;
+  top: -10px;
   margin: 0 0 10px;
   display: block;
   color: red;
@@ -350,6 +353,7 @@ onMounted(async () => {
 }
 
 .form-authorization__block-inputs-label {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -505,6 +509,11 @@ onMounted(async () => {
 }
 
 @media screen and (min-width: 1024px) {
+  .error-message {
+    max-width: 100%;
+    top: 0;
+  }
+
   .authorization-page {
     display: flex;
     flex-direction: row-reverse;
