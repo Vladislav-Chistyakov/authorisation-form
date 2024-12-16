@@ -20,9 +20,9 @@ const submit = async function () {
         break
       }
     }
-    errorSignin.value = 'Такой пользователь не найден. Пройдите на страницу регистрации'
+    errorSignin.value = 'Такой пользователь не найден'
   } else {
-    errorSignin.value = 'Такой пользователь не найден. Пройдите на страницу регистрации'
+    errorSignin.value = 'Такой пользователь не найден'
   }
 }
 
