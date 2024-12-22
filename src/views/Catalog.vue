@@ -79,7 +79,7 @@ onBeforeMount(async () => {
 
 .catalog__list {
   margin: 0;
-  padding: 0;
+  padding: 0 0 30px;
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
