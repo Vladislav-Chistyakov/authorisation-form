@@ -1,10 +1,10 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase.js'
 
 const router = useRouter()
-const usersInfo = ref(null)
-
 
 const email = ref(null)
 const password = ref(null)
@@ -16,22 +16,15 @@ const errorEmail = ref('')
 const submit = async function () {
   if (!errorEmail.value && !errorPassword.value) {
     try {
-      if (!Array.isArray(JSON.parse(localStorage.getItem('users')))) {
-        await localStorage.setItem('users', JSON.stringify([]))
-      }
-
-      usersInfo.value = JSON.parse(localStorage.getItem('users'))
-
-      if (Array.isArray(usersInfo.value)) {
-        usersInfo.value.push({
-          email: email.value,
-          password: password.value,
-        })
-
-        await localStorage.setItem('users', JSON.stringify(usersInfo.value))
-      }
-
-      await router.push('/signin')
+      createUserWithEmailAndPassword(auth, email.value, password.value)
+          .then(async (userCredential) => {
+            const user = userCredential.user
+            localStorage.setItem('user', JSON.stringify(user))
+            await router.push('/list')
+          })
+          .catch((error) => {
+            alert(`Не удалось зарегестрировать пользователя. Error: ${error.code}`)
+          })
     }
     catch (error) {
       console.error('Не удалось сохранить данные', error)

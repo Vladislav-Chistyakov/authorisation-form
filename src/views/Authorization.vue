@@ -1,29 +1,25 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase.js'
 
 const router = useRouter()
 
 const email = ref(null)
 const password = ref(null)
-
-const errorSignin = ref('')
+const errorSignIn = ref('')
 
 const submit = async function () {
-  const projectLocalStorage = localStorage.getItem('users')
-  const users = projectLocalStorage ? await JSON.parse(projectLocalStorage) : null
-  if (Array.isArray(users) && users.length > 0) {
-    for (const user of users) {
-      if (user.email === email.value && user.password === password.value) {
+  signInWithEmailAndPassword(auth, email.value, password.value)
+      .then(async (userCredential) => {
+        const user = userCredential.user
         localStorage.setItem('user', JSON.stringify(user))
         await router.push('/list')
-        break
-      }
-    }
-    errorSignin.value = 'Такой пользователь не найден'
-  } else {
-    errorSignin.value = 'Такой пользователь не найден'
-  }
+      })
+      .catch((error) => {
+        errorSignIn.value = error.code
+      })
 }
 
 onMounted(async () => {
@@ -214,8 +210,8 @@ onMounted(async () => {
         <div class="form-authorization__block-inputs">
           <label class="form-authorization__block-inputs-label" for="email">
 
-            <span v-show="errorSignin" class="error-message">
-              {{ errorSignin }}
+            <span v-show="errorSignIn" class="error-message">
+              {{ errorSignIn }}
             </span>
 
             Email

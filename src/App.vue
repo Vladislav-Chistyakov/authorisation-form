@@ -1,25 +1,4 @@
-<script setup>
-import { useRoute, useRouter } from 'vue-router'
-import { computed, watch } from 'vue'
-
-const route = useRoute()
-const router = useRouter()
-const routePatch = computed(() => {
-  return route.path
-})
-
-// watch(routePatch, async (newValue) => {
-//   if (newValue !== '/') {
-//     const user = localStorage.getItem('user')
-//     if (!user) {
-//       await router.push({ path: '/'})
-//       .catch((error) => {
-//         console.error('Error, ошибка при переходе на другую страницу: ', error)
-//       })
-//     }
-//   }
-// })
-</script>
+<script setup></script>
 
 <template>
   <main class="main">
