@@ -459,6 +459,7 @@ onMounted(async () => {
 
 .form-authorization__buttons-submit {
   background-color: colors.$border-green;
+  color: white;
 }
 
 .form-authorization__buttons-sign-up {
@@ -514,7 +515,7 @@ onMounted(async () => {
     display: flex;
     flex-direction: row-reverse;
     background-color: inherit;
-    padding: 120px 0 135px;
+    padding: 120px 0 0;
   }
 
   .authorization-page__top {

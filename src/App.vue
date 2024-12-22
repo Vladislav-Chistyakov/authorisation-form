@@ -10,9 +10,6 @@
 
 <style lang="scss">
 @use '~/src/assets/sass/colors';
-@use '~/src/assets/sass/normalize';
-
-@include normalize.normalize;
 
 * {
   font-family: 'Inter', Helvetica, Arial, sans-serif;
