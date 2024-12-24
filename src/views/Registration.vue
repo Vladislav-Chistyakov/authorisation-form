@@ -3,6 +3,7 @@ import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase.js'
+import LoginRegisterContainer from "@/components/LoginRegisterContainer.vue";
 
 const router = useRouter()
 
@@ -60,34 +61,16 @@ watch(email, (newEmail) => {
 </script>
 
 <template>
-  <div class="registration-page">
-    <div class="registration-page__top wrapper">
-      <img src="../assets/images/logo-white.svg" alt="logo" class="registration-page__top-company-logo company-logo">
+  <LoginRegisterContainer>
+    <template #heading>
+      Once you register, we will provide you with access to our technologies.
+    </template>
 
-      <h1 class="registration-page__top-company-name company-name">Travalizer</h1>
-    </div>
+    <template #description>
+      Please register
+    </template>
 
-    <div class="registration-page__background-car wrapper">
-      <img src="../assets/images/background-car.svg" alt="background-car" class="registration-page__background-car-image">
-    </div>
-
-    <div class="registration-page__main wrapper">
-      <div class="registration-page__main-company-logo company-logo">
-        <img src="../assets/images/logo-green.svg" alt="logo">
-
-        <h1 class="registration-page__main-company-name company-name">Travalizer</h1>
-      </div>
-
-      <div class="registration-page__main-info">
-        <h2 class="registration-page__main-info-header">
-          Once you register, we will provide you with access to our technologies.
-        </h2>
-
-        <p class="registration-page__main-info-description">
-          Please register
-        </p>
-      </div>
-
+    <template #form>
       <form class="registration-page__form-registration form-registration">
         <div class="form-registration__block-inputs">
           <label class="form-registration__block-inputs-label" for="email">
@@ -128,28 +111,13 @@ watch(email, (newEmail) => {
           <button @click="submit" :disabled="pending" type="button" class="form-registration__buttons-submit">Register</button>
         </div>
       </form>
-
-      <ul class="form-registration__list">
-        <li class="form-registration__item">
-          <button @click="router.push('/signin')" :disabled="pending" class="form-registration__entrance">Or, login with</button>
-        </li>
-        <li class="form-registration__item">
-          <a class="form-registration__link" :disabled="pending" href="https://faceboock.com">Facebook</a>
-        </li>
-        <li class="form-registration__item">
-          <a class="form-registration__link" :disabled="pending" href="https://linkedin.com">Linked In</a>
-        </li>
-        <li class="form-registration__item">
-          <a class="form-registration__link" :disabled="pending" href="https://google.com">Google</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+    </template>
+  </LoginRegisterContainer>
 </template>
 
 <style scoped lang="scss">
-@use '~/src/assets/sass/colors';
-@use '~/src/assets/sass/container';
+@use '@/assets/sass/colors';
+@use '@/assets/sass/container';
 @include container.container;
 
 .error-message {
@@ -348,7 +316,7 @@ watch(email, (newEmail) => {
     align-items: center;
   }
 
-  
+
   .registration-page__background-car-image {
     height: auto;
   }

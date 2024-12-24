@@ -72,8 +72,8 @@ onBeforeMount(async () => {
 </template>
 
 <style scoped lang="scss">
-@use '~/src/assets/sass/colors';
-@use '~/src/assets/sass/container';
+@use '@/assets/sass/colors';
+@use '@/assets/sass/container';
 @include container.container;
 
 .product-card {

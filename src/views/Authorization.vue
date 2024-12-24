@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase.js'
+import LoginRegisterContainer from "@/components/LoginRegisterContainer.vue";
 
 const router = useRouter()
 
@@ -11,6 +12,7 @@ const password = ref(null)
 const errorSignIn = ref('')
 
 const pending = ref(false)
+
 
 const submit = async function () {
   pending.value = true
@@ -38,34 +40,16 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="authorization-page">
-    <div class="authorization-page__top wrapper">
-      <img src="../assets/images/logo-white.svg" alt="logo" class="authorization-page__top-company-logo company-logo">
+  <LoginRegisterContainer>
+    <template #heading>
+        Artificial Intelligence giving you travel recommendations
+    </template>
 
-      <h1 class="authorization-page__top-company-name company-name">Travalizer</h1>
-    </div>
+    <template #description>
+      Welcome Back, Please login to your account
+    </template>
 
-    <div class="authorization-page__background-car wrapper">
-      <img src="../assets/images/background-car.svg" alt="background-car" class="authorization-page__background-car-image">
-    </div>
-
-    <div class="authorization-page__main wrapper">
-      <div class="authorization-page__main-company-logo company-logo">
-        <img src="../assets/images/logo-green.svg" alt="logo">
-
-        <h1 class="authorization-page__main-company-name company-name">Travalizer</h1>
-      </div>
-
-      <div class="authorization-page__main-info">
-        <h2 class="authorization-page__main-info-header">
-          Artificial Intelligence giving you travel recommendations
-        </h2>
-
-        <p class="authorization-page__main-info-description">
-          Welcome Back, Please login to your account
-        </p>
-      </div>
-
+    <template #form>
       <form class="authorization-page__form-authorization form-authorization">
         <div class="form-authorization__block-inputs">
           <label class="form-authorization__block-inputs-label" for="email">
@@ -99,28 +83,13 @@ onMounted(async () => {
           <RouterLink :to="'/signup'" :disabled="pending" class="form-authorization__buttons-sign-up">Sign Up</RouterLink>
         </div>
       </form>
-
-      <ul class="form-authorization__list">
-        <li class="form-authorization__item">
-          <button @click="router.push('/signin')" class="form-authorization__entrance" :disabled="pending">Or, login with</button>
-        </li>
-        <li class="form-authorization__item">
-          <a class="form-authorization__link" :disabled="pending" href="https://faceboock.com">Facebook</a>
-        </li>
-        <li class="form-authorization__item">
-          <a class="form-authorization__link" :disabled="pending" href="https://linkedin.com">Linked In</a>
-        </li>
-        <li class="form-authorization__item">
-          <a class="form-authorization__link" :disabled="pending" href="https://google.com">Google</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+    </template>
+  </LoginRegisterContainer>
 </template>
 
 <style scoped lang="scss">
-@use '~/src/assets/sass/colors';
-@use '~/src/assets/sass/container';
+@use '@/assets/sass/colors';
+@use '@/assets/sass/container';
 @include container.container;
 
 .error-message {
@@ -393,7 +362,7 @@ onMounted(async () => {
     align-items: center;
   }
 
-  
+
   .authorization-page__background-car-image {
     height: auto;
   }

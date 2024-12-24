@@ -9,7 +9,7 @@
 </template>
 
 <style lang="scss">
-@use '~/src/assets/sass/colors';
+@use '@/assets/sass/colors';
 
 * {
   font-family: 'Inter', Helvetica, Arial, sans-serif;
@@ -21,8 +21,8 @@ body {
 </style>
 
 <style scoped lang="scss">
-@use '~/src/assets/sass/colors';
-@use '~/src/assets/sass/container';
+@use '@/assets/sass/colors';
+@use '@/assets/sass/container';
 @include container.container;
 
 .main {
