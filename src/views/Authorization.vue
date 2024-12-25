@@ -4,6 +4,9 @@ import { useRouter } from 'vue-router'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase.js'
 import LoginRegisterContainer from "@/components/LoginRegisterContainer.vue";
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+
+auth.languageCode = 'it';
 
 const router = useRouter()
 
@@ -36,6 +39,23 @@ onMounted(async () => {
     localStorage.setItem('user', JSON.stringify(null))
   }
 })
+
+const provider = new GoogleAuthProvider()
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
+
+const googleAuthorization = function () {
+  signInWithPopup(auth, provider)
+      .then(async (result) => {
+        console.warn('test', result)
+        const user = result.user
+        localStorage.setItem('user', JSON.stringify(user))
+        await router.push('/list')
+      })
+      .catch((error) => {
+        console.error(error.message)
+        errorSignIn.value = 'Не удалось войти через Google account'
+  })
+}
 
 </script>
 
@@ -83,6 +103,10 @@ onMounted(async () => {
           <RouterLink :to="'/signup'" :disabled="pending" class="form-authorization__buttons-sign-up">Sign Up</RouterLink>
         </div>
       </form>
+    </template>
+
+    <template #google-authorisation>
+      <button class="form-authorization__link"  @click="googleAuthorization">Google</button>
     </template>
   </LoginRegisterContainer>
 </template>
@@ -270,7 +294,12 @@ onMounted(async () => {
   font-weight: 500;
 }
 
-.form-authorization__link {
+.form-authorization__link, .form-authorization__link:hover, .form-authorization__link:active, .form-authorization__link:focus, .form-authorization__link:active {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
   color: colors.$text-green;
   font-weight: 500;
 }

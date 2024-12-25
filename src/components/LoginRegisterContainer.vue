@@ -45,7 +45,9 @@ const router = useRouter()
           <a class="form-registration__link" href="https://linkedin.com">Linked In</a>
         </li>
         <li class="form-registration__item">
-          <a class="form-registration__link" href="https://google.com">Google</a>
+          <slot name="google-authorisation">
+            <a class="form-registration__link" href="https://google.com" >Google</a>
+          </slot>
         </li>
       </ul>
     </div>
