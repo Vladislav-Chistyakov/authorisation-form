@@ -46,7 +46,6 @@ provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
 const googleAuthorization = function () {
   signInWithPopup(auth, provider)
       .then(async (result) => {
-        console.warn('test', result)
         const user = result.user
         localStorage.setItem('user', JSON.stringify(user))
         await router.push('/list')
