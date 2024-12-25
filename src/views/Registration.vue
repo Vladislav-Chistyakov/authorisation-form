@@ -18,7 +18,7 @@ const pending = ref(false)
 
 const submit = async function () {
   pending.value = true
-  if (!errorEmail.value && !errorPassword.value) {
+  if (!errorEmail.value && !errorPassword.value &&  email.value && password.value && repeatedPassword.value) {
     try {
       createUserWithEmailAndPassword(auth, email.value, password.value)
           .then(async (userCredential) => {
