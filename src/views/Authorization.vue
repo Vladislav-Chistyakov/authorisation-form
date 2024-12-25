@@ -105,70 +105,6 @@ onMounted(async () => {
   right: 0;
 }
 
-.authorization-page__top {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  background-color: colors.$bg-main;
-  padding-top: 32px;
-  padding-bottom: 32px;
-}
-
-.company-name {
-  margin: 0;
-  padding: 0;
-  font-size: 32px;
-  line-height: 36px;
-}
-
-.authorization-page__background-car {
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  padding-top: 35px;
-  padding-bottom: 30px;
-  background-color: colors.$bg-car;
-}
-
-.authorization-page__background-car-image {
-  height: 230px;
-}
-
-.authorization-page__main {
-  padding-top: 32px;
-  padding-bottom: 30px;
-  background-color: colors.$bg-block;
-  color: colors.$text-green;
-}
-
-.authorization-page__main-company-logo {
-  display: none;
-}
-
-.authorization-page__main-company-name {
-  display: none;
-}
-
-.authorization-page__main-info {
-  margin-bottom: 40px;
-}
-
-.authorization-page__main-info-header {
-  margin: 0 0 16px 0;
-  padding: 0;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.authorization-page__main-info-description {
-  font-size: 16px;
-  line-height: 20px;
-  color: colors.$text-lite-green;
-  margin: 0 0 16px 0;
-}
-
 .form-authorization {
   display: flex;
   flex-direction: column;
@@ -343,54 +279,6 @@ onMounted(async () => {
   .error-message {
     max-width: 100%;
     top: 0;
-  }
-
-  .authorization-page {
-    display: flex;
-    flex-direction: row-reverse;
-    background-color: inherit;
-    padding: 120px 0 0;
-  }
-
-  .authorization-page__top {
-    display: none;
-  }
-
-  .authorization-page__background-car {
-    width: 100%;
-    border-radius: 0 20px 20px 0;
-    align-items: center;
-  }
-
-
-  .authorization-page__background-car-image {
-    height: auto;
-  }
-
-  .authorization-page__main {
-    width: 100%;
-    max-width: 550px;
-    border-radius: 20px 0 0 20px;
-  }
-
-  .authorization-page__main-company-logo {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    margin-bottom: 56px;
-  }
-
-  .authorization-page__main-company-name {
-    display: block;
-  }
-
-  .authorization-page__main-info-header {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .authorization-page__main-info-description {
-    margin-bottom: 24px;
   }
 
   .form-authorization__block-inputs-label {

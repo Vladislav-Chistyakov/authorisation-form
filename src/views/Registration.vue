@@ -130,70 +130,6 @@ watch(email, (newEmail) => {
   right: 0;
 }
 
-.registration-page__top {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  background-color: colors.$bg-main;
-  padding-top: 32px;
-  padding-bottom: 32px;
-}
-
-.company-name {
-  margin: 0;
-  padding: 0;
-  font-size: 32px;
-  line-height: 36px;
-}
-
-.registration-page__background-car {
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  padding-top: 35px;
-  padding-bottom: 30px;
-  background-color: colors.$bg-car;
-}
-
-.registration-page__background-car-image {
-  height: 230px;
-}
-
-.registration-page__main {
-  padding-top: 32px;
-  padding-bottom: 30px;
-  background-color: colors.$bg-block;
-  color: colors.$text-green;
-}
-
-.registration-page__main-company-logo {
-  display: none;
-}
-
-.registration-page__main-company-name {
-  display: none;
-}
-
-.registration-page__main-info {
-  margin-bottom: 40px;
-}
-
-.registration-page__main-info-header {
-  margin: 0 0 16px 0;
-  padding: 0;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.registration-page__main-info-description {
-  font-size: 16px;
-  line-height: 20px;
-  color: colors.$text-lite-green;
-  margin: 0 0 16px 0;
-}
-
 .form-registration {
   display: flex;
   flex-direction: column;
@@ -299,54 +235,6 @@ watch(email, (newEmail) => {
 }
 
 @media screen and (min-width: 1024px) {
-  .registration-page {
-    display: flex;
-    flex-direction: row-reverse;
-    background-color: inherit;
-    padding: 120px 0 135px;
-  }
-
-  .registration-page__top {
-    display: none;
-  }
-
-  .registration-page__background-car {
-    width: 100%;
-    border-radius: 0 20px 20px 0;
-    align-items: center;
-  }
-
-
-  .registration-page__background-car-image {
-    height: auto;
-  }
-
-  .registration-page__main {
-    width: 100%;
-    max-width: 550px;
-    border-radius: 20px 0 0 20px;
-  }
-
-  .registration-page__main-company-logo {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    margin-bottom: 56px;
-  }
-
-  .registration-page__main-company-name {
-    display: block;
-  }
-
-  .registration-page__main-info-header {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .registration-page__main-info-description {
-    margin-bottom: 24px;
-  }
-
   .form-registration__block-inputs-label {
     font-weight: 600;
   }
